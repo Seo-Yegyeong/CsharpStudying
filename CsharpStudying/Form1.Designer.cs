@@ -42,11 +42,12 @@
             this.textBox_print.Location = new System.Drawing.Point(42, 78);
             this.textBox_print.Multiline = true;
             this.textBox_print.Name = "textBox_print";
+            this.textBox_print.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_print.Size = new System.Drawing.Size(350, 317);
             this.textBox_print.TabIndex = 0;
             this.textBox_print.Text = "0";
             this.textBox_print.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox_print.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_print_MouseClick);
+            //this.textBox_print.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_print_MouseClick);
             // 
             // label1
             // 

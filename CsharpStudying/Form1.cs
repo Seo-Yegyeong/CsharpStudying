@@ -41,13 +41,39 @@ namespace CsharpStudying // 프로젝트 이름.
             textBox_print.Text += dbNum.GetType() + " dbNum: " + dbNum.ToString() + "\r\n";
             textBox_print.Text += dmNum.GetType() + " dmNum: " + dmNum.ToString() + "\r\n";
             */
+
+            //문자열 관리법
+            /*$"{표현식}"
+             * 안에 있는 코드를 계산하고 자동으로 문자열로 만들어준다! 깔끔, 가독성 굳.
+             * E.g) textBox_print.Text += $"{3 + 5}\n";
+            int a = 10;
+            int b = 2;
+
+            textBox_print.Text += $"\r\n{a + b}\r\n";
+            textBox_print.Text += $"{a - b}\r\n";
+            textBox_print.Text += $"{a * b}\r\n";
+            textBox_print.Text += $"{a / b}\r\n";
+            textBox_print.Text += $"{a % b}\r\n";
+            textBox_print.Text += $"{a == b}\r\n";
+            */
+
+            //Q1
+            string fruit = "Mango";
+            int price = 3500;
+            int cnt = 6;
+            int sum = price * cnt;
+            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.";
+            
         }
 
+
+        /*
         private void textBox_print_MouseClick(object sender, MouseEventArgs e)
         {
             int num=0;
             int.TryParse(this.textBox_print.Text, out num);
             this.textBox_print.Text = (++num).ToString();
         }
+        */
     }
 }
