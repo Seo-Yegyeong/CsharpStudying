@@ -36,11 +36,17 @@
             // 
             this.textBox_print.BackColor = System.Drawing.SystemColors.Desktop;
             this.textBox_print.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox_print.Font = new System.Drawing.Font("NanumGothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox_print.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.textBox_print.HideSelection = false;
             this.textBox_print.Location = new System.Drawing.Point(42, 78);
             this.textBox_print.Multiline = true;
             this.textBox_print.Name = "textBox_print";
             this.textBox_print.Size = new System.Drawing.Size(350, 317);
             this.textBox_print.TabIndex = 0;
+            this.textBox_print.Text = "0";
+            this.textBox_print.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_print.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_print_MouseClick);
             // 
             // label1
             // 
