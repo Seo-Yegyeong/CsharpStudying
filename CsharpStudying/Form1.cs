@@ -25,23 +25,20 @@ namespace CsharpStudying // 프로젝트 이름.
         {
             InitializeComponent(); // Form에 포함된 UI 요소들을 초기화하는 메서드 호출. 버튼, 텍스트박스 등 디자인 도구에서 만든 컨트롤들을 실제로 생성하고 속성 설정하는 코드들이 있음. Form 실행될 때 꼭 호출되어야 윈도우 폼이 제대로 보인다!
 
-            int numOfCrew; // declare a variable
-            numOfCrew = 19; // use the variable
-            string className = "말하기"; //
-            className = "수학";
-
-            int lineCount;
-            byte buffer;
-
-            int number = 10;
-            string word = "안녕";
-            // number = word; 이 코드는 형이 다르기 때문에 실행 불가.
-
-            short word2 = 20;
-            number = word2; // 이 경우에는 데이터 타입이 다르지만 int 타입이 short 타입보다 크기가 크기 때문에 데이터 복사 가능.
+            byte bNum = 5;
+            short sNum = 10;
+            int iNum = 50;
+            float fNum = 90.5F;
+            double dbNum = 100.55;
+            decimal dmNum = 10000.555M;
 
 
-            textBox_print.Text += numOfCrew.GetType() + "numOfCrew: " + numOfCrew.ToString() + "\r\n";
+            textBox_print.Text += bNum.GetType() + " bNum: " + bNum.ToString() + "\r\n";
+            textBox_print.Text += sNum.GetType() + " sNum: " + sNum.ToString() + "\r\n";
+            textBox_print.Text += iNum.GetType() + " iNum: " + iNum.ToString() + "\r\n";
+            textBox_print.Text += fNum.GetType() + " fNum: " + fNum.ToString() + "\r\n";
+            textBox_print.Text += dbNum.GetType() + " dbNum: " + dbNum.ToString() + "\r\n";
+            textBox_print.Text += dmNum.GetType() + " dmNum: " + dmNum.ToString() + "\r\n";
         }
     }
 }
