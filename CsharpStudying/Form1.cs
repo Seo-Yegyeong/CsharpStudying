@@ -62,13 +62,25 @@ namespace CsharpStudying // 프로젝트 이름.
             int price = 3500;
             int cnt = 6;
             int sum = price * cnt;
-            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.\r\n";
+            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.\r\n\r\n";
 
             //Q2
             string typeCasting = "15";
             textBox_print.Text += $"15에 10을 더하면 {int.Parse(typeCasting) + 10}입니다.";
 
+            //Q3
+            string stuff = "노트북";
+            int price1 = 1200000;
+            float discount = 0.15f;
+            byte leftCount = 8;
+            bool isAvailable;
 
+            double finalPrice = Math.Round(price1 * (1 - discount), 2);
+            textBox_print.Text = (leftCount > 0) ?  $"구매 가능: 할인 가격은 {finalPrice}원입니다." : "품절되었습니다.";
+
+            textBox1_print.Text = (leftCount >= 5) ? "여유 있음" : "소량 남음";
+
+            textBox2_print.Text = $"상품명: {stuff}, 할인된 가격: {finalPrice}, 재고: {leftCount}개";
         }
 
 
