@@ -62,8 +62,13 @@ namespace CsharpStudying // 프로젝트 이름.
             int price = 3500;
             int cnt = 6;
             int sum = price * cnt;
-            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.";
-            
+            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.\r\n";
+
+            //Q2
+            string typeCasting = "15";
+            textBox_print.Text += $"15에 10을 더하면 {int.Parse(typeCasting) + 10}입니다.";
+
+
         }
 
 
