@@ -16,29 +16,23 @@ namespace CsharpStudying
         {
             InitializeComponent();
 
-            string[] array = new string[10]{
-                "푸르른 공기가 나를 사무친다 가득",
-                "하늘을 날을 수 있을 듯한 밤이다",
-                "잔요동이 헤엄쳐 오는 곳이 어딘지 몰라 안 가는 건 아니야",
-                "따사로운 온기가 닿을 구름을 향하는 비행이",
-                "한 번뿐인 이 모험을 겁내진 않아",
-                "오늘보다 오래된 날은 없으니 어서 날아오르자",
-                "제목: 청춘만화, 작사-작곡: 이무진, 연도: 2025",
-                "분명한 건 지금보다 환하게 빛날 거야 아직 서막일 뿐야",
-                "푸르른 공기가 날 사무쳐 안아 하늘을 날을 수 있을 듯한 밤이다",
-                "잔요동이 헤엄쳐 오는 곳으로 가자\r\n이 세상에서 제일 높은 곳을 향해서\r\n뛰어오르자"
-            };
+            string[] results = new string[10];
 
-            textBox1.Text = array[0].IndexOf("푸르른 공기").ToString() + "\r\n";
-            textBox1.Text += array[1].LastIndexOf("을") + "\r\n";
-            textBox1.Text += array[2].Contains("몰") + "\r\n";
-            textBox1.Text += array[3].Replace("비행", "이륙") + "\r\n";
-            textBox1.Text += array[4].Insert(10, "과 도전") + "\r\n";
-            textBox1.Text += array[5].Remove(16, 3) + "\r\n";
-            string[] temp = array[6].Split(','); 
-            textBox1.Text += String.Join("//", temp) + "\r\n";
-            textBox1.Text += array[7].Substring(11, 3) + "\r\n";
+            results[0] = "동해 물과 백두산이".IndexOf("백두산").ToString();
+            results[1] = "토요일에 먹는 토마토".LastIndexOf("토").ToString();
+            results[2] = "질서 있는 퇴장".Contains("퇴").ToString();
+            results[3] = "그 사람의 그림자는 그랬다.".Replace("그", "이");
+            results[4] = "삼성 갤럭시".Insert(2, "애플");
+            results[5] = "오늘은 왠지 더 배고프다".Remove("오늘은 왠지 더 배고프다".IndexOf("더"), 1);
+            string[] splitedData = "이름, 나이, 전화번호".Split(',');
+            results[6] = splitedData[0];
+            results[7] = splitedData[1].Trim();
+            results[8] = splitedData[2].Trim();
+            results[9] = "우리 나라 만세".Substring(3, 2);
 
+            foreach (string s in results) {
+                textBox1.Text += s + "\r\n";
+            }
         }
     }
 }
