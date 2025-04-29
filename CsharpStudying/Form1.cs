@@ -1,96 +1,46 @@
-﻿/* 
- * [기본 구조 파악]
- * using 키워드 : '네임스페이스' 가져온다는 의미.
- * namespace : 여러 클래스를 논리적으로 묶은 공간.
-*/
-
-using System; // 가장 기본적인 .NET namespace (Console, Math 등 자주 쓰이는 클래스가 포함돼있음.)
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text; // 문자열과 관련된 기능을 제공하는 namespace
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CsharpStudying // 프로젝트 이름.
+namespace CsharpStudying
 {
     public partial class Form1 : Form
-        // Form1 이라는 이름의 클래스. Form 클래스를 상속받음.
-        // .NET에서 제공하는 기본 윈도우 창인 Form 클래스를 상속 받아서, 윈도우 창의 기본 동작과 속성을 물려받음.
-        // partial : 이 클래스는 코드가 여러 파일로 나눠져 있음을 의미.
     {
-        public Form1() // Form1 클래스의 생성자 (constructor)
+        public Form1()
         {
-            InitializeComponent(); // Form에 포함된 UI 요소들을 초기화하는 메서드 호출. 버튼, 텍스트박스 등 디자인 도구에서 만든 컨트롤들을 실제로 생성하고 속성 설정하는 코드들이 있음. Form 실행될 때 꼭 호출되어야 윈도우 폼이 제대로 보인다!
+            InitializeComponent();
 
+            string[] array = new string[10]{
+                "푸르른 공기가 나를 사무친다 가득",
+                "하늘을 날을 수 있을 듯한 밤이다",
+                "잔요동이 헤엄쳐 오는 곳이 어딘지 몰라 안 가는 건 아니야",
+                "따사로운 온기가 닿을 구름을 향하는 비행이 망설여지기도 하겠지만",
+                "한 번뿐인 이 모험을 겁내진 않아",
+                "오늘보다 오래된 날은 없으니 어서 날아오르자",
+                "제목: 청춘만화, 작사-작곡: 이무진, 연도: 2025",
+                "분명한 건 지금보다 환하게 빛날 거야 아직 서막일 뿐야",
+                "푸르른 공기가 날 사무쳐 안아 하늘을 날을 수 있을 듯한 밤이다",
+                "잔요동이 헤엄쳐 오는 곳으로 가자\r\n이 세상에서 제일 높은 곳을 향해서\r\n뛰어오르자"
+            };
 
-            /*
-            byte bNum = 5;
-            short sNum = 10;
-            int iNum = 50;
-            float fNum = 90.5F;
-            double dbNum = 100.55;
-            decimal dmNum = 10000.555M;
+            textBox1.Text = "IndexOf(\"푸르른 공기\"): " + array[0].IndexOf("푸르른 공기").ToString() + "\r\n";
+            textBox1.Text += "LastIndexOf(\"을\"): " + array[1].LastIndexOf("을") + "\r\n";
+            textBox1.Text += "Contains(\"몰\")" + array[2].Contains("몰") + "\r\n";
+            textBox1.Text += "Replace(\"비행\", \"이륙\"): " + array[3].Replace("비행", "이륙") + "\r\n";
+            textBox1.Text += "Insert(10, \"과 도전\"): " + array[4].Insert(10, "과 도전") + "\r\n";
+            textBox1.Text += "Remove(16, 3): " + array[5].Remove(16, 3) + "\r\n";
+            textBox1.Text += "Split(','):\r\n"
+                                + array[6].Split(',')[0] + "\r\n"
+                                + array[6].Split(',')[1] + "\r\n"
+                                + array[6].Split(',')[2] + "\r\n";
+            textBox1.Text += "Substring(11, 3): " + array[7].Substring(11, 3) + "\r\n";
 
-            textBox_print.Text += bNum.GetType() + " bNum: " + bNum.ToString() + "\r\n";
-            textBox_print.Text += sNum.GetType() + " sNum: " + sNum.ToString() + "\r\n";
-            textBox_print.Text += iNum.GetType() + " iNum: " + iNum.ToString() + "\r\n";
-            textBox_print.Text += fNum.GetType() + " fNum: " + fNum.ToString() + "\r\n";
-            textBox_print.Text += dbNum.GetType() + " dbNum: " + dbNum.ToString() + "\r\n";
-            textBox_print.Text += dmNum.GetType() + " dmNum: " + dmNum.ToString() + "\r\n";
-            */
-
-            //문자열 관리법
-            /*$"{표현식}"
-             * 안에 있는 코드를 계산하고 자동으로 문자열로 만들어준다! 깔끔, 가독성 굳.
-             * E.g) textBox_print.Text += $"{3 + 5}\n";
-            int a = 10;
-            int b = 2;
-
-            textBox_print.Text += $"\r\n{a + b}\r\n";
-            textBox_print.Text += $"{a - b}\r\n";
-            textBox_print.Text += $"{a * b}\r\n";
-            textBox_print.Text += $"{a / b}\r\n";
-            textBox_print.Text += $"{a % b}\r\n";
-            textBox_print.Text += $"{a == b}\r\n";
-            */
-
-            //Q1
-            string fruit = "Mango";
-            int price = 3500;
-            int cnt = 6;
-            int sum = price * cnt;
-            textBox_print.Text = $"{fruit} {cnt}개의 총 가격은 {sum}원입니다.\r\n\r\n";
-
-            //Q2
-            string typeCasting = "15";
-            textBox_print.Text += $"15에 10을 더하면 {int.Parse(typeCasting) + 10}입니다.";
-
-            //Q3
-            string stuff = "노트북";
-            int price1 = 1200000;
-            float discount = 0.15f;
-            byte leftCount = 8;
-            bool isAvailable;
-
-            double finalPrice = Math.Round(price1 * (1 - discount), 2);
-            textBox_print.Text = (leftCount > 0) ?  $"구매 가능: 할인 가격은 {finalPrice}원입니다." : "품절되었습니다.";
-
-            textBox1_print.Text = (leftCount >= 5) ? "여유 있음" : "소량 남음";
-
-            textBox2_print.Text = $"상품명: {stuff}, 할인된 가격: {finalPrice}, 재고: {leftCount}개";
         }
-
-
-        /*
-        private void textBox_print_MouseClick(object sender, MouseEventArgs e)
-        {
-            int num=0;
-            int.TryParse(this.textBox_print.Text, out num);
-            this.textBox_print.Text = (++num).ToString();
-        }
-        */
     }
 }
