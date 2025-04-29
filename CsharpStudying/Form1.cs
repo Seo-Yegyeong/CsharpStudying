@@ -16,34 +16,36 @@ namespace CsharpStudying
         {
             InitializeComponent();
 
-            string text = "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. -공자";
-            int[] idxList = new int[3];
-            string[] stringList = { ".", "-" };
-
-            // 1-1
-            // Record the location of special characters
-            for (int i = 0; i < stringList.Length; i++)
+            if (coin(true) == true)
             {
-                idxList[i] = text.IndexOf(stringList[i]);
+                textBox1.Text = "승리";
             }
-            // Remove the "-공자" part
-            text = text.Remove(idxList[1], 3);
-            Console.WriteLine("++++++" + text);
-            textBox1.Text = text + "\r\n";
-            
-            //----------------------------------------------
-            //1-2
-            string[] wordList = new string[3];
-            wordList[0] = text.Substring(text.IndexOf("얼마나"), 3);
-            wordList[1] = text.Substring(text.IndexOf("천천히"), 3);
-            wordList[2] = text.Substring(text.IndexOf("가는지"), 3);
-            textBox1.Text += string.Join(" ", wordList) + "\r\n";
+            else
+            {
+                textBox1.Text = "패배";
+            }
+        }
 
-            //----------------------------------------------
-            //1-3
-            text = text.Remove(idxList[0],1);
-            string[] tempList = text.Split(' ');
-            textBox1.Text += string.Join(",", tempList);
+        bool coin(bool coinTF)
+        {
+            Random random = new Random();
+            bool result;
+            if (random.Next(0, 100) % 2 == 1)
+            {
+                result = true;
+            }
+            else {
+                result = false;
+            }
+
+            if (result == coinTF)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
