@@ -17,14 +17,14 @@ namespace CsharpStudying
     {
         enum Week
         {
-            none,
-            Sunday, //0
-            Monday, //1
-            Tuesday, //2
-            Wednesday, //3
-            Thursday, //4
-            Friday, //5
-            Saturday, //6
+            none, //0
+            Sunday, //1
+            Monday, //2
+            Tuesday, //3
+            Wednesday, //4
+            Thursday, //5
+            Friday, //6
+            Saturday, //7
             Error = 999
         };
 
@@ -38,7 +38,7 @@ namespace CsharpStudying
         {
             
             string msg = string.Empty;
-            Week day = ReturnWeekEnum(textBox_input.Text.Trim());
+            Week day = InputCheck(textBox_input.Text.Trim());
             switch (day)
             {
                 case Week.Sunday:
@@ -69,7 +69,8 @@ namespace CsharpStudying
             textBox_result.Text = msg;
         }
 
-        Week ReturnWeekEnum(string day)
+        //유효성 검사!! (주로 기업 프로젝트에서 이런 식으로 많이 한다.
+        Week InputCheck(string day)
         {
             switch (day)
             {
