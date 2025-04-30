@@ -16,36 +16,20 @@ namespace CsharpStudying
         {
             InitializeComponent();
 
-            if (coin(true) == true)
-            {
-                textBox1.Text = "승리";
-            }
-            else
-            {
-                textBox1.Text = "패배";
-            }
+            //string[,] order = new string[3, 4]
+            //{
+            //    {"홍길동", "포도", "복숭아", "바나나"},
+            //    {"아무개", "사과", "수박", "오렌지"},
+            //    {"손오공", "바나나", "사과", "오렌지"}
+            //};
+
+            //foreach (string item in order)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
         }
 
-        bool coin(bool coinTF)
-        {
-            Random random = new Random();
-            bool result;
-            if (random.Next(0, 100) % 2 == 1)
-            {
-                result = true;
-            }
-            else {
-                result = false;
-            }
-
-            if (result == coinTF)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
     }
 }
