@@ -17,6 +17,7 @@ namespace CsharpStudying
     {
         enum Week
         {
+            none,
             Sunday, //0
             Monday, //1
             Tuesday, //2
@@ -35,28 +36,30 @@ namespace CsharpStudying
 
         private void button_input_Click(object sender, EventArgs e)
         {
+            
             string msg = string.Empty;
-            switch (textBox_input.Text)
+            Week day = ReturnWeekEnum(textBox_input.Text.Trim());
+            switch (day)
             {
-                case "Sunday":
+                case Week.Sunday:
                     msg = "예헹 행복한 날이여";
                     break;
-                case "Monday":
+                case Week.Monday:
                     msg = "월요일 좋아~ 너무도 좋아 ^^ - 스폰지밥";
                     break;
-                case "Tuesday":
+                case Week.Tuesday:
                     msg = "자 달려볼까유~ 오늘도 열시미";
                     break;
-                case "Wednesday":
+                case Week.Wednesday:
                     msg = "벌써 주중의 중간! 뭔가 특별한 날인 듯한 느낌 ㅎㅎ";
                     break;
-                case "Thursday":
+                case Week.Thursday:
                     msg = "뻔하지만 오늘도 열심히 ㅋㅋ!! 잘하고 이따";
                     break;
-                case "Friday":
+                case Week.Friday:
                     msg = "이제 주말이고만~~~ 주말엔 어떻게 보내볼까?!";
                     break;
-                case "Saturday":
+                case Week.Saturday:
                     msg = "뒹굴뒹굴, 햇살도 쫌 쬐고, 누려보자~!";
                     break;
                 default:
@@ -64,6 +67,29 @@ namespace CsharpStudying
                     break;
             }
             textBox_result.Text = msg;
+        }
+
+        Week ReturnWeekEnum(string day)
+        {
+            switch (day)
+            {
+                case "Sunday":
+                    return Week.Sunday;
+                case "Monday":
+                    return Week.Monday;
+                case "Tuesday":
+                    return Week.Tuesday;
+                case "Wednesday":
+                    return Week.Wednesday;
+                case "Thursday":
+                    return Week.Thursday;
+                case "Friday":
+                    return Week.Friday;
+                case "Saturday":
+                    return Week.Saturday;
+                default:
+                    return Week.none;
+            }
         }
     }
 }
