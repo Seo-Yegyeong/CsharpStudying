@@ -15,87 +15,55 @@ namespace CsharpStudying
 {
     public partial class Form1 : Form
     {
-        private string boolValue;
+        enum Week
+        {
+            Sunday, //0
+            Monday, //1
+            Tuesday, //2
+            Wednesday, //3
+            Thursday, //4
+            Friday, //5
+            Saturday, //6
+            Error = 999
+        };
 
+        Week week;
         public Form1()
         {
-
             InitializeComponent();
-            
-            //string[,] order = new string[3, 4]
-            //{
-            //    {"홍길동", "포도", "복숭아", "바나나"},
-            //    {"아무개", "사과", "수박", "오렌지"},
-            //    {"손오공", "바나나", "사과", "오렌지"}
-            //};
-
-            //char[] tmp = new char[3];
-            //int i = 0;
-            //string result = "";
-            //foreach (string item in order)
-            //{
-            //    if (i % 4 == 0)
-            //    {
-            //        result += item + ": ";
-            //    }
-            //    else
-            //    {
-            //        if (item == "바나나")
-            //        {
-            //            //order[i] = "바나나 (유기농)";
-            //        }
-            //    }
-            //    i++;
-            //}
-            //textBox1.Text = result;
-
-
         }
 
-        bool Coin(bool coinTF)
-        {
-            Random random = new Random();
-            int result = random.Next(0, 100) % 2;
-            if ((result == 1 && coinTF == true) || (result == 0 && coinTF == false))
-            {
-                return true;
-            }
-            return false;
-        }
         private void button_input_Click(object sender, EventArgs e)
         {
-            #region #Debugging Test
-            Console.WriteLine("textBox : " + textBox_input.Text + "radioButton : " + boolValue);
-            Console.WriteLine("textBox : " + (textBox_input.Text == "") + " radioButton : " + (boolValue==null));
-            #endregion
-
-            if (textBox_input.Text == "" && this.boolValue == null)
+            string msg = string.Empty;
+            switch (textBox_input.Text)
             {
-                textBox_result.Text = "You didn't pick any option!";
-                return;
+                case "Sunday":
+                    msg = "예헹 행복한 날이여";
+                    break;
+                case "Monday":
+                    msg = "월요일 좋아~ 너무도 좋아 ^^ - 스폰지밥";
+                    break;
+                case "Tuesday":
+                    msg = "자 달려볼까유~ 오늘도 열시미";
+                    break;
+                case "Wednesday":
+                    msg = "벌써 주중의 중간! 뭔가 특별한 날인 듯한 느낌 ㅎㅎ";
+                    break;
+                case "Thursday":
+                    msg = "뻔하지만 오늘도 열심히 ㅋㅋ!! 잘하고 이따";
+                    break;
+                case "Friday":
+                    msg = "이제 주말이고만~~~ 주말엔 어떻게 보내볼까?!";
+                    break;
+                case "Saturday":
+                    msg = "뒹굴뒹굴, 햇살도 쫌 쬐고, 누려보자~!";
+                    break;
+                default:
+                    msg = "잘못 입력했어요 :( 다시 입력해주세요!";
+                    break;
             }
-            else if (textBox_input.Text != "true" && textBox_input.Text != "false" && this.boolValue == null)
-            {
-                textBox_result.Text = "invalid value!";
-                return;
-            }
-
-            if (textBox_input.Text != "")
-            {
-                boolValue = textBox_input.Text;
-            }
-
-            textBox_result.Text = Coin(Convert.ToBoolean(boolValue)).ToString();
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            boolValue = "true";
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            boolValue = "false";
+            textBox_result.Text = msg;
         }
     }
 }
