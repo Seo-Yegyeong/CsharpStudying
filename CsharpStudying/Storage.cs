@@ -21,6 +21,30 @@ namespace CsharpStudying // 프로젝트 이름.
     // .NET에서 제공하는 기본 윈도우 창인 Form 클래스를 상속 받아서, 윈도우 창의 기본 동작과 속성을 물려받음.
     // partial : 이 클래스는 코드가 여러 파일로 나눠져 있음을 의미.
     {
+        enum Food
+        {
+            None,
+            Pizza,
+            Burger,
+            Pasta,
+            Kimchi = 100 //값 지정 가능!
+        };
+
+        enum Week
+        {
+            none, //0
+            Sunday, //1
+            Monday, //2
+            Tuesday, //3
+            Wednesday, //4
+            Thursday, //5
+            Friday, //6
+            Saturday, //7
+            Error = 999
+        };
+
+        Week week;
+
         public Storage() // Form1 클래스의 생성자 (constructor)
         {
             InitializeComponent(); // Form에 포함된 UI 요소들을 초기화하는 메서드 호출. 버튼, 텍스트박스 등 디자인 도구에서 만든 컨트롤들을 실제로 생성하고 속성 설정하는 코드들이 있음. Form 실행될 때 꼭 호출되어야 윈도우 폼이 제대로 보인다!
@@ -141,7 +165,7 @@ namespace CsharpStudying // 프로젝트 이름.
 
             #region # If statement
 
-            if (coin(true))
+            if (Coin(true))
             {
                 textBox1.Text = "승리";
             }
@@ -182,6 +206,49 @@ namespace CsharpStudying // 프로젝트 이름.
             string[] tempList = text.Split(' ');
             textBox1.Text += string.Join(",", tempList);
             #endregion
+
+
+            #region
+
+            Food food = 0;
+
+            string animal = "Cat";
+            switch (animal)
+            {
+                case "Dog":
+                    MessageBox.Show("Dog!");
+                    break;
+                case "Cat":
+                    MessageBox.Show("Cat!");
+                    break;
+                default:
+                    MessageBox.Show("Nothing!");
+                    break;
+            }
+
+            //같은 enum 타입끼리만 비교 연산 가능! (서로 다른 enum 타입은 비교 불가!)
+
+            switch (food)
+            {
+                case Food.Pizza:
+                    MessageBox.Show("Pizza");
+                    break;
+                case Food.Burger:
+                    MessageBox.Show("Burger");
+                    break;
+                case Food.Pasta:
+                    MessageBox.Show("Pasta");
+                    break;
+                case Food.Kimchi:
+                    MessageBox.Show("Kimchi");
+                    break;
+                default:
+                    MessageBox.Show("welcome!");
+                    break;
+            }
+            #endregion
+
+
         }
 
 
@@ -205,7 +272,7 @@ namespace CsharpStudying // 프로젝트 이름.
         #endregion
 
         #region
-        bool coin(bool coinTF)
+        bool Coin(bool coinTF)
         {
             Random random = new Random();
             int result = random.Next(0, 100) % 2;
@@ -214,6 +281,109 @@ namespace CsharpStudying // 프로젝트 이름.
                 return true;
             }
             return false;
+        }
+        #endregion
+
+
+
+        #region #Receive input value and use the Coin() function
+        
+        private string boolValue;
+        private void button_input_Click(object sender, EventArgs e)
+        {
+            #region #Debugging Test
+            //Console.WriteLine("textBox : " + textBox_input.Text + "radioButton : " + boolValue);
+            //Console.WriteLine("textBox : " + (textBox_input.Text == "") + " radioButton : " + (boolValue==null));
+            #endregion
+
+            if (textBox_input.Text == "" && this.boolValue == null) //textBox에도, RadioButton에도 값이 없다면 에러 메시지 출력
+            {
+                textBox_result.Text = "ERROR : You didn't pick any option!";
+                return;
+            }
+            else if (textBox_input.Text != "true" && textBox_input.Text != "false" && this.boolValue == null) //유효하지 않은 값에 대해 처리
+            {
+                textBox_result.Text = "invalid value!";
+                return;
+            }
+
+            if (textBox_input.Text != "") //textBox에 담긴 값 우선 확인
+            {
+                boolValue = textBox_input.Text;
+            }
+
+            textBox_result.Text = Coin(Convert.ToBoolean(boolValue)).ToString();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            boolValue = "true";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            boolValue = "false";
+        }
+        #endregion
+
+
+        #region
+        private void button_input_Click1(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            Week day = InputCheck(textBox_input.Text.Trim());
+            switch (day)
+            {
+                case Week.Sunday:
+                    msg = "예헹 행복한 날이여";
+                    break;
+                case Week.Monday:
+                    msg = "월요일 좋아~ 너무도 좋아 ^^ - 스폰지밥";
+                    break;
+                case Week.Tuesday:
+                    msg = "자 달려볼까유~ 오늘도 열시미";
+                    break;
+                case Week.Wednesday:
+                    msg = "벌써 주중의 중간! 뭔가 특별한 날인 듯한 느낌 ㅎㅎ";
+                    break;
+                case Week.Thursday:
+                    msg = "뻔하지만 오늘도 열심히 ㅋㅋ!! 잘하고 이따";
+                    break;
+                case Week.Friday:
+                    msg = "이제 주말이고만~~~ 주말엔 어떻게 보내볼까?!";
+                    break;
+                case Week.Saturday:
+                    msg = "뒹굴뒹굴, 햇살도 쫌 쬐고, 누려보자~!";
+                    break;
+                default:
+                    msg = "잘못 입력했어요 :( 다시 입력해주세요!";
+                    break;
+            }
+            textBox_result.Text = msg;
+        }
+
+        //유효성 검사!! (주로 기업 프로젝트에서 이런 식으로 많이 한다.
+        Week InputCheck(string day)
+        {
+            switch (day)
+            {
+                case "Sunday":
+                    return Week.Sunday;
+                case "Monday":
+                    return Week.Monday;
+                case "Tuesday":
+                    return Week.Tuesday;
+                case "Wednesday":
+                    return Week.Wednesday;
+                case "Thursday":
+                    return Week.Thursday;
+                case "Friday":
+                    return Week.Friday;
+                case "Saturday":
+                    return Week.Saturday;
+                default:
+                    return Week.none;
+            }
         }
         #endregion
     }
