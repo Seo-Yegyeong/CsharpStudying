@@ -69,12 +69,12 @@ namespace CsharpStudying
             Console.WriteLine("textBox : " + (textBox_input.Text == "") + " radioButton : " + (boolValue==null));
             #endregion
 
-            if (textBox_input.Text == "" || this.boolValue == null)
+            if (textBox_input.Text == "" && this.boolValue == null)
             {
                 textBox_result.Text = "You didn't pick any option!";
                 return;
             }
-            else if (textBox_input.Text != "true" && textBox_input.Text != "false")
+            else if (textBox_input.Text != "true" && textBox_input.Text != "false" && this.boolValue == null)
             {
                 textBox_result.Text = "invalid value!";
                 return;
