@@ -25,9 +25,13 @@ namespace CsharpStudying // 프로젝트 이름.
         {
             InitializeComponent(); // Form에 포함된 UI 요소들을 초기화하는 메서드 호출. 버튼, 텍스트박스 등 디자인 도구에서 만든 컨트롤들을 실제로 생성하고 속성 설정하는 코드들이 있음. Form 실행될 때 꼭 호출되어야 윈도우 폼이 제대로 보인다!
 
+            // #region이란? 특정 코드 블록을 접어서 숨겨주는 기능!
+            #region #1 if문 강의
 
-            // # Variable Type Test
-            /*
+            #endregion
+
+
+            #region # Variable Type Test
             byte bNum = 5;
             short sNum = 10;
             int iNum = 50;
@@ -35,32 +39,33 @@ namespace CsharpStudying // 프로젝트 이름.
             double dbNum = 100.55;
             decimal dmNum = 10000.555M;
 
-            textBox_print.Text += bNum.GetType() + " bNum: " + bNum.ToString() + "\r\n";
-            textBox_print.Text += sNum.GetType() + " sNum: " + sNum.ToString() + "\r\n";
-            textBox_print.Text += iNum.GetType() + " iNum: " + iNum.ToString() + "\r\n";
-            textBox_print.Text += fNum.GetType() + " fNum: " + fNum.ToString() + "\r\n";
-            textBox_print.Text += dbNum.GetType() + " dbNum: " + dbNum.ToString() + "\r\n";
-            textBox_print.Text += dmNum.GetType() + " dmNum: " + dmNum.ToString() + "\r\n";
-            */
+            textBox1.Text += bNum.GetType() + " bNum: " + bNum.ToString() + "\r\n";
+            textBox1.Text += sNum.GetType() + " sNum: " + sNum.ToString() + "\r\n";
+            textBox1.Text += iNum.GetType() + " iNum: " + iNum.ToString() + "\r\n";
+            textBox1.Text += fNum.GetType() + " fNum: " + fNum.ToString() + "\r\n";
+            textBox1.Text += dbNum.GetType() + " dbNum: " + dbNum.ToString() + "\r\n";
+            textBox1.Text += dmNum.GetType() + " dmNum: " + dmNum.ToString() + "\r\n";
+            #endregion
 
             // # 문자열 보간
-            /*
-            $"{표현식}"
-            - 안에 있는 코드를 계산하고 자동으로 문자열로 만들어준다! 깔끔, 가독성 굳.
-            - E.g) textBox_print.Text += $"{3 + 5}\n";
-            
+            #region
+
+            //$"{표현식}"
+            //- 안에 있는 코드를 계산하고 자동으로 문자열로 만들어준다! 깔끔, 가독성 굳.
+            //- E.g) textBox1.Text += $"{3 + 5}\n";
+
             int a = 10;
             int b = 2;
 
-            textBox_print.Text += $"\r\n{a + b}\r\n";
-            textBox_print.Text += $"{a - b}\r\n";
-            textBox_print.Text += $"{a * b}\r\n";
-            textBox_print.Text += $"{a / b}\r\n";
-            textBox_print.Text += $"{a % b}\r\n";
-            textBox_print.Text += $"{a == b}\r\n";
-            
+            textBox1.Text += $"\r\n{a + b}\r\n";
+            textBox1.Text += $"{a - b}\r\n";
+            textBox1.Text += $"{a * b}\r\n";
+            textBox1.Text += $"{a / b}\r\n";
+            textBox1.Text += $"{a % b}\r\n";
+            textBox1.Text += $"{a == b}\r\n";
+            #endregion
 
-            // # 문자열 보간 사용하기
+            #region # 문자열 보간 사용하기
             // Q1
             string fruit = "Mango";
             int fruitPrice = 3500;
@@ -91,7 +96,6 @@ namespace CsharpStudying // 프로젝트 이름.
             int price = 1200000;
             float discountRate = 0.15f;
             byte stock = 8;
-            bool isAvailable = stock > 0;
 
             double discountedPrice = price * (1 - discountRate);
             textBox1.Text = (isAvailable) ? "구매 가능: 할인 가격은 " + discountedPrice.ToString("N0") + "원입니다." : "품절되었습니다.";
@@ -107,9 +111,9 @@ namespace CsharpStudying // 프로젝트 이름.
                 - "0.###"은 소수점 세 자리까지, 있으면 표시, 없으면 표시 안 함.
                 - "N2"는 쉼표 + 소수 둘째 자리까지.
             */
+            #endregion
 
-            // # The Built-in Functions in String namespace
-            /*
+            #region # The Built-in Functions in String namespace
             string[] results = new string[10];
 
             results[0] = "동해 물과 백두산이".IndexOf("백두산").ToString();
@@ -127,17 +131,17 @@ namespace CsharpStudying // 프로젝트 이름.
             foreach (string s in results) {
                 textBox1.Text += s + "\r\n";
             }
-            */
+            #endregion
 
-            // # Use a Function!
-            /*
+            #region # Use a Function!
+
             int[] array = Add(30, 7);
             textBox1.Text = String.Join(", ", array);
-            */
+            #endregion
 
-            // # If statement
-            /*
-            if (coin(true) == true)
+            #region # If statement
+
+            if (coin(true))
             {
                 textBox1.Text = "승리";
             }
@@ -145,83 +149,72 @@ namespace CsharpStudying // 프로젝트 이름.
             {
                 textBox1.Text = "패배";
             }
-            */
+            #endregion
+
+            #region # String Methods Practice #2
+
+            string text = "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. -공자";
+            int[] idxList = new int[3];
+            string[] stringList = { ".", "-" };
+
+            // 1-1
+            // Record the location of special characters
+            for (int i = 0; i < stringList.Length; i++)
+            {
+                idxList[i] = text.IndexOf(stringList[i]);
+            }
+            // Remove the "-공자" part
+            text = text.Remove(idxList[1], 3);
+            Console.WriteLine("++++++" + text);
+            textBox1.Text = text + "\r\n";
+
+            //----------------------------------------------
+            //1-2
+            string[] wordList = new string[3];
+            wordList[0] = text.Substring(text.IndexOf("얼마나"), 3);
+            wordList[1] = text.Substring(text.IndexOf("천천히"), 3);
+            wordList[2] = text.Substring(text.IndexOf("가는지"), 3);
+            textBox1.Text += string.Join(" ", wordList) + "\r\n";
+
+            //----------------------------------------------
+            //1-3
+            text = text.Remove(idxList[0], 1);
+            string[] tempList = text.Split(' ');
+            textBox1.Text += string.Join(",", tempList);
+            #endregion
         }
 
 
-        /*
-        private void textBox_print_MouseClick(object sender, MouseEventArgs e)
+        #region
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
             int num=0;
-            int.TryParse(this.textBox_print.Text, out num);
-            this.textBox_print.Text = (++num).ToString();
+            int.TryParse(this.textBox1.Text, out num);
+            this.textBox1.Text = (++num).ToString();
         }
-        */
+        #endregion
 
-        /*
+        #region
         int[] Add(int x, int y)
         {
             int[] array = new int[2];
             array[0] = x / y;
             array[1] = x % y;
             return array;
-        } 
-        */
-
-        // # String Methods Practice #2
-        /*
-        string text = "멈추지 않는 한 얼마나 천천히 가는지는 중요하지 않다. -공자";
-        int[] idxList = new int[3];
-        string[] stringList = { ".", "-" };
-
-        // 1-1
-        // Record the location of special characters
-        for (int i = 0; i < stringList.Length; i++)
-        {
-            idxList[i] = text.IndexOf(stringList[i]);
         }
-        // Remove the "-공자" part
-        text = text.Remove(idxList[1], 3);
-        Console.WriteLine("++++++" + text);
-        textBox1.Text = text + "\r\n";
-            
-        //----------------------------------------------
-        //1-2
-        string[] wordList = new string[3];
-        wordList[0] = text.Substring(text.IndexOf("얼마나"), 3);
-        wordList[1] = text.Substring(text.IndexOf("천천히"), 3);
-        wordList[2] = text.Substring(text.IndexOf("가는지"), 3);
-        textBox1.Text += string.Join(" ", wordList) + "\r\n";
+        #endregion
 
-        //----------------------------------------------
-        //1-3
-        text = text.Remove(idxList[0],1);
-        string[] tempList = text.Split(' ');
-        textBox1.Text += string.Join(",", tempList);
-        */
-
-        /*
+        #region
         bool coin(bool coinTF)
         {
             Random random = new Random();
-            bool result;
-            if (random.Next(0, 100) % 2 == 1)
-            {
-                result = true;
-            }
-            else {
-                result = false;
-            }
-
-            if (result == coinTF)
+            int result = random.Next(0, 100) % 2;
+            if ( (result == 1 && coinTF == true) || (result == 0 && coinTF == false))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-        */
+        #endregion
     }
 }

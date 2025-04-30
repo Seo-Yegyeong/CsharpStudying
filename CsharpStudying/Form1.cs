@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//생각 후 코딩 :D
+
 namespace CsharpStudying
 {
     public partial class Form1 : Form
@@ -23,12 +25,30 @@ namespace CsharpStudying
             //    {"손오공", "바나나", "사과", "오렌지"}
             //};
 
+            //char[] tmp = new char[3];
+            //int i = 0;
+            //string result = "";
             //foreach (string item in order)
             //{
-            //    Console.WriteLine(item);
+            //    if (i % 4 == 0)
+            //    {
+            //        result += item + ": ";
+            //    }
+            //    else
+            //    {
+            //        if (item == "바나나")
+            //        {
+            //            //order[i] = "바나나 (유기농)";
+            //        }
+            //    }
+            //    i++;
             //}
+            //textBox1.Text = result;
+
 
         }
+
+        
 
         
     }

@@ -41,7 +41,7 @@
             this.textBox3.Font = new System.Drawing.Font("NanumGothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBox3.ForeColor = System.Drawing.SystemColors.InfoText;
             this.textBox3.HideSelection = false;
-            this.textBox3.Location = new System.Drawing.Point(131, 320);
+            this.textBox3.Location = new System.Drawing.Point(36, 319);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -57,7 +57,7 @@
             this.textBox2.Font = new System.Drawing.Font("NanumGothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBox2.ForeColor = System.Drawing.SystemColors.InfoText;
             this.textBox2.HideSelection = false;
-            this.textBox2.Location = new System.Drawing.Point(131, 189);
+            this.textBox2.Location = new System.Drawing.Point(36, 188);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -70,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Gulim", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(127, 18);
+            this.label1.Location = new System.Drawing.Point(32, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 21);
             this.label1.TabIndex = 5;
@@ -83,7 +83,7 @@
             this.textBox1.Font = new System.Drawing.Font("NanumGothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
             this.textBox1.HideSelection = false;
-            this.textBox1.Location = new System.Drawing.Point(131, 56);
+            this.textBox1.Location = new System.Drawing.Point(36, 55);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
