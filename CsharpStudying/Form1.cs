@@ -17,14 +17,36 @@ namespace CsharpStudying
     {
         public Form1()
         {
-            InitializeComponent();
-            for (int i = 2; i <= 9; i++)
+            InitializeComponent();           
+        }
+
+        private void button_input_Click(object sender, EventArgs e)
+        {
+            int stCount;
+            bool isParsed = int.TryParse(textBox_input.Text, out stCount);
+            textBox_result.Text = ""; //initialize
+
+            if (!isParsed) //error catch
             {
-                for (int j = 1;  j <= 9; j++)
+                MessageBox.Show("Please put a number");
+            }
+            else
+            {
+                Random r = new Random();
+                int[] stScore = new int[stCount];
+                string[] stName = new string[stCount];
+                for (int i = 0; i < stCount; i++)
                 {
-                    Console.WriteLine(i + " * " + j + " = " + i * j);
+                    stName[i] = "학생" + (i+1).ToString();
+                    stScore[i] = r.Next(0, 101);
+                    textBox_result.Text += printScore(stName[i], stScore[i]);
                 }
             }
+        }
+
+        string printScore(string name, int score)
+        {
+            return name + "의 점수: " + score + "점\r\n";
         }
     }
 }
