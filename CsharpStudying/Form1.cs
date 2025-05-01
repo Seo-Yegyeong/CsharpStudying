@@ -18,15 +18,18 @@ namespace CsharpStudying
         public Form1()
         {
             InitializeComponent();
+            int cnt = 0;
             int sum = 0;
-            for (int i = 1; i <= 20; i++)
+
+            for(int i = 1; i <= 100; i++)
             {
-                if (i%2 == 0)
+                if(i % 3 == 0 && i % 5 != 0)
                 {
+                    cnt++;
                     sum += i;
                 }
             }
-            Console.WriteLine(sum);
+            Console.WriteLine("cnt: " + cnt + " sum: " + sum);
         }
     }
 }
