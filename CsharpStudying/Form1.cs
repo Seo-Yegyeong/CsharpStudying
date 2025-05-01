@@ -15,82 +15,18 @@ namespace CsharpStudying
 {
     public partial class Form1 : Form
     {
-        enum Week
-        {
-            none, //0
-            Sunday, //1
-            Monday, //2
-            Tuesday, //3
-            Wednesday, //4
-            Thursday, //5
-            Friday, //6
-            Saturday, //7
-            Error = 999
-        };
-
-        Week week;
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button_input_Click(object sender, EventArgs e)
-        {
-            
-            string msg = string.Empty;
-            Week day = InputCheck(textBox_input.Text.Trim());
-            switch (day)
+            int sum = 0;
+            for (int i = 1; i <= 20; i++)
             {
-                case Week.Sunday:
-                    msg = "예헹 행복한 날이여";
-                    break;
-                case Week.Monday:
-                    msg = "월요일 좋아~ 너무도 좋아 ^^ - 스폰지밥";
-                    break;
-                case Week.Tuesday:
-                    msg = "자 달려볼까유~ 오늘도 열시미";
-                    break;
-                case Week.Wednesday:
-                    msg = "벌써 주중의 중간! 뭔가 특별한 날인 듯한 느낌 ㅎㅎ";
-                    break;
-                case Week.Thursday:
-                    msg = "뻔하지만 오늘도 열심히 ㅋㅋ!! 잘하고 이따";
-                    break;
-                case Week.Friday:
-                    msg = "이제 주말이고만~~~ 주말엔 어떻게 보내볼까?!";
-                    break;
-                case Week.Saturday:
-                    msg = "뒹굴뒹굴, 햇살도 쫌 쬐고, 누려보자~!";
-                    break;
-                default:
-                    msg = "잘못 입력했어요 :( 다시 입력해주세요!";
-                    break;
+                if (i%2 == 0)
+                {
+                    sum += i;
+                }
             }
-            textBox_result.Text = msg;
-        }
-
-        //유효성 검사!! (주로 기업 프로젝트에서 이런 식으로 많이 한다.
-        Week InputCheck(string day)
-        {
-            switch (day)
-            {
-                case "Sunday":
-                    return Week.Sunday;
-                case "Monday":
-                    return Week.Monday;
-                case "Tuesday":
-                    return Week.Tuesday;
-                case "Wednesday":
-                    return Week.Wednesday;
-                case "Thursday":
-                    return Week.Thursday;
-                case "Friday":
-                    return Week.Friday;
-                case "Saturday":
-                    return Week.Saturday;
-                default:
-                    return Week.none;
-            }
+            Console.WriteLine(sum);
         }
     }
 }
