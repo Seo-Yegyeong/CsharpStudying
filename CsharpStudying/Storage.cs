@@ -508,5 +508,44 @@ namespace CsharpStudying // 프로젝트 이름.
             }
         }
         #endregion
+
+        #region
+        private void button1_input_Click(object sender, EventArgs e)
+        {
+            int stCount;
+            bool isParsed = int.TryParse(textBox_input.Text, out stCount);
+            /*
+             int.TryParse(string 입력값, out 변수명)
+             -> 사용자 입력이 숫자인지 안전하게 확인하게 해주는 메서드.
+             -> 문자열을 숫자로 변환할 때 변환이 가능한 경우에만 값을 저장하고, true를 반환
+             -> 변환에 실패하더라도 오류를 발생시키지 않고 false를 반환한다!
+             ** TryParse()는 성공 여부와 변환된 값을 동시에 반환해야 하기 때문에, 두 개의 값을 반환해야 함.
+             ** 그래서 bool은 리턴값, 정수 결과는 out 키워드를 사용해서 바깥 변수에 저장하는 구조.
+             */
+            textBox_result.Text = ""; //initialize
+
+            if (!isParsed) //error catch
+            {
+                MessageBox.Show("Please put the number");
+            }
+            else
+            {
+                Random r = new Random();
+                int[] stScore = new int[stCount];
+                string[] stName = new string[stCount];
+                for (int i = 0; i < stCount; i++)
+                {
+                    stName[i] = "학생" + (i + 1).ToString();
+                    stScore[i] = r.Next(0, 101);
+                    textBox_result.Text += printScore(stName[i], stScore[i]);
+                }
+            }
+        }
+
+        string printScore(string name, int score)
+        {
+            return name + "의 점수: " + score + "점\r\n";
+        }
+        #endregion
     }
 }
