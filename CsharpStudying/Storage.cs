@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text; // 문자열과 관련된 기능을 제공하는 namespace
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,6 +45,13 @@ namespace CsharpStudying // 프로젝트 이름.
         };
 
         Week week;
+
+        enum CoffeeMenu
+        {
+            Plain,
+            WithMilk,
+            WithIceCream
+        }
 
         public Storage() // Form1 클래스의 생성자 (constructor)
         {
@@ -248,9 +256,123 @@ namespace CsharpStudying // 프로젝트 이름.
             }
             #endregion
 
+            #region
+            /*goto
+             * 특정한 라벨(label)로 점프해서 코드를 실행하도록 하는 명령문(제어)
+             * 코드 순서를 무시하고,
+             * 
+             * 가독성 저하 / 유지보수 어려움 / 코드 흐름에 혼란 야기
+             */
+            //case#1
+            int selection = 0;
+            textBox_result.Text += "Start \r\n";
 
+        Location:
+            textBox_result.Text += "Location \r\n";
+
+            if(selection == 0)
+            {
+                textBox_result.Text += "if 문 안 \r\n";
+
+                selection = 1;
+
+                goto Location;
+            }
+
+
+            //case#2
+            // goto & switch
+            // switch에서 goto case를 쓰는 목적! Why?
+            //여러 case에서 같은 코드를 실행해야 할 때, 중복 없이 깔끔하게 처리 가능
+
+            CoffeeMenu choice = CoffeeMenu.WithIceCream;
+
+            switch (choice)
+            {
+                case CoffeeMenu.Plain:
+                    textBox_result.Text += "Coffee";
+                    break;
+                case CoffeeMenu.WithMilk:
+                    textBox_result.Text += "Milk";
+                    break;
+                case CoffeeMenu.WithIceCream:
+                    textBox_result.Text += "IceCream";
+                    break;
+            }
+            #endregion
+
+            #region #for statement
+            int forSum = 0;
+            for (int i = 1; i <= 20; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    forSum += i;
+                }
+            }
+            Console.WriteLine(sum);
+            #endregion
+
+            #region #for statement
+            //1
+            for (int i = 2; i <= 9; i++)
+            {
+                for (int j = 1; j <= 9; j++)
+                {
+                    Console.WriteLine(i + " * " + j + " = " + i * j);
+                }
+            }
+
+            //2
+            int maxLine = 4;
+            string starText = "";
+            for (int i = 1; i <= maxLine; i++)
+            {
+                for (int j = 1; j <= maxLine - i; j++)
+                {
+                    starText += " ";
+                }
+                for (int j = 1; j <= i; j++)
+                {
+                    starText += "*";
+                }
+                starText += "\r\n";
+            }
+
+            //3
+            for (int i = 1; i <= maxLine; i++)
+            {
+                for (int j = 1; j <= maxLine - i; j++)
+                {
+                    starText += " ";
+                }
+                for (int j = 1; j <= i * 2 - 1; j++)
+                {
+                    starText += "*";
+                }
+                starText += "\r\n";
+            }
+            
+            Console.WriteLine(starText);
+            #endregion
+
+            #region #foreach statement
+            int[] scores = { 85, 90, 78, 92, 88 };
+            int foreachSum = 0;
+
+            foreach (int score in scores)
+            {
+                foreachSum += score;
+            }
+
+            double average = (double)foreachSum / scores.Length;
+            Console.WriteLine("총합 : " + foreachSum);
+            Console.WriteLine("평균 : " + average);
+            Console.WriteLine("=================");
+            #endregion
         }
 
+        //===============================================================//
 
         #region
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
