@@ -32,6 +32,10 @@ namespace CsharpStudying
             Same
         }
 
+        int userScore = 0;
+        int comScore = 0;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -41,74 +45,55 @@ namespace CsharpStudying
         // (가위, 바위, 보) 버튼 클릭 시 실행 로직
         private void RPS_Click(object sender, EventArgs e)
         {
-            //get rid of pre-records.
-            textBox_result.Text = "";
+            textBox_result.Text = ""; //get rid of pre-records.
+            RPS mine = CheckRPS(((Button)sender).Name); //What button did the user click?
+            PlayRPSGrame(mine); //Get the result of 'Rock-Paper-Scissors'
+        }
 
-            //What button did the user click?
-            RPS mine = CheckRPS(((Button)sender).Name);
-            if (mine == RPS.fail) //validation
+        // 게임 전체 로직
+        void PlayRPSGrame(RPS mine)
+        {
+            Result result = RPSGame(mine);
+            if (result == Result.Win)
             {
-                MessageBox.Show("fail!"); return;
+                userScore++;
+                textBox_myScore.Text = userScore.ToString();
+            }
+            else if (result == Result.Lose)
+            {
+                comScore++;
+                textBox_comScore.Text = comScore.ToString();
             }
 
-            //create computer's random option
-            Random random = new Random();
-            int num = random.Next(0, 3);
-            RPS computer = CheckRPS(num);
-
-            //Get the result of 'Rock-Paper-Scissors'
-            MatchResult(mine, computer);
+            if (userScore == 3 || comScore == 3)
+            {
+                textBox_result.Text += "게임 끝!";
+                SetToZero();
+            }
         }
 
         // 승부 판단 로직
-        void MatchResult(RPS mine, RPS computer)
+        Result RPSGame(RPS mine)
         {
-            Result result;
+            Random r = new Random();
+            RPS computer = (RPS)r.Next(0, 3);
+            
+            textBox_result.Text += $"마왕의 선택: {computer}\r\n";
             if (mine == computer)
             {
                 textBox_result.Text += "비겼습니다!\r\n";
-                result = Result.Same;
+                return Result.Same;
             }
             else if ((mine == RPS.Rock && computer == RPS.Scissors) || (mine == RPS.Paper && computer == RPS.Rock) || (mine == RPS.Scissors && computer == RPS.Paper))
             {
 
                 textBox_result.Text += "이겼어요 야호~~!\r\n";
-                result = Result.Win;
+                return Result.Win;
             }
             else
             {
                 textBox_result.Text += "마왕의 득점! 내가 봐줬다~~\r\n";
-                result = Result.Lose;
-            }
-            ControlScore(result);
-        }
-
-        // 점수 관리 로직
-        void ControlScore(Result result)
-        {
-            bool isParsed;
-            int score = 0;
-            if (result == Result.Win)
-            {
-                isParsed = int.TryParse(textBox_myScore.Text, out score);
-                if (isParsed)
-                {
-                    textBox_myScore.Text = (++score).ToString();
-                }
-            }
-            else if (result == Result.Lose)
-            {
-                isParsed = int.TryParse(textBox_computerScore.Text, out score);
-                if (isParsed)
-                {
-                    textBox_computerScore.Text = (++score).ToString();
-                }
-            }
-            
-            if (score == 3)
-            {
-                textBox_result.Text += "게임 끝!";
-                SetToZero();
+                return Result.Lose;
             }
         }
 
@@ -116,7 +101,7 @@ namespace CsharpStudying
         void SetToZero()
         {
             textBox_myScore.Text = "0";
-            textBox_computerScore.Text = "0";
+            textBox_comScore.Text = "0";
         }
 
         
@@ -130,25 +115,6 @@ namespace CsharpStudying
                 case "buttonRock":
                     return RPS.Rock;
                 case "buttonPaper":
-                    return RPS.Paper;
-                default:
-                    return RPS.fail;
-            }
-        }
-
-        // Computer가 랜덤 생성한 옵션값을 ENUM 값으로 반환
-        RPS CheckRPS(int computer)
-        {
-            switch (computer)
-            {
-                case 0:
-                    textBox_result.Text += "마왕의 선택: Scissors\r\n";
-                    return RPS.Scissors;
-                case 1:
-                    textBox_result.Text += "마왕의 선택: Rock\r\n";
-                    return RPS.Rock;
-                case 2:
-                    textBox_result.Text += "마왕의 선택: Paper\r\n";
                     return RPS.Paper;
                 default:
                     return RPS.fail;

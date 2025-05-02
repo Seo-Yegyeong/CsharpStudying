@@ -34,7 +34,7 @@
             this.buttonPaper = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_myScore = new System.Windows.Forms.TextBox();
-            this.textBox_computerScore = new System.Windows.Forms.TextBox();
+            this.textBox_comScore = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -101,15 +101,15 @@
             this.textBox_myScore.Text = "0";
             this.textBox_myScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox_computerScore
+            // textBox_comScore
             // 
-            this.textBox_computerScore.Location = new System.Drawing.Point(321, 223);
-            this.textBox_computerScore.Multiline = true;
-            this.textBox_computerScore.Name = "textBox_computerScore";
-            this.textBox_computerScore.Size = new System.Drawing.Size(100, 30);
-            this.textBox_computerScore.TabIndex = 9;
-            this.textBox_computerScore.Text = "0";
-            this.textBox_computerScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_comScore.Location = new System.Drawing.Point(321, 223);
+            this.textBox_comScore.Multiline = true;
+            this.textBox_comScore.Name = "textBox_comScore";
+            this.textBox_comScore.Size = new System.Drawing.Size(100, 30);
+            this.textBox_comScore.TabIndex = 9;
+            this.textBox_comScore.Text = "0";
+            this.textBox_comScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -124,7 +124,7 @@
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(442, 367);
-            this.Controls.Add(this.textBox_computerScore);
+            this.Controls.Add(this.textBox_comScore);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_myScore);
             this.Controls.Add(this.label1);
@@ -146,7 +146,7 @@
         private System.Windows.Forms.Button buttonPaper;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_myScore;
-        private System.Windows.Forms.TextBox textBox_computerScore;
+        private System.Windows.Forms.TextBox textBox_comScore;
         private System.Windows.Forms.Label label2;
     }
 }
