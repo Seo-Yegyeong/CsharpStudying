@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,112 +14,116 @@ using System.Windows.Forms;
 
 namespace CsharpStudying
 {
+    struct Point
+    {
+        public int x;
+        internal int y; // internal (접근제한자) - 같은 프로젝트 안에서만 접근 가능.
+        public int z;
+
+        public static double Diff_xy(Point a, Point b)
+        {
+            return Math.Sqrt(Math.Pow(a.x - b.x, 2) + Math.Pow(a.y - b.y, 2));
+        }
+    }
+
     public partial class Form1 : Form
     {
-        // 가위 / 바위 / 보
-        enum RPS
+        /* [사용자 Class]
+            Field
+            - 이름 (string name)
+            - 개인 식별 ID (string userID)
+            - 이번달 지출 합계 (int sum)
+            
+            Method
+            - field 초기화 (Constructor)
+            - 구매 시 지출합계 재연산
+
+
+           [자판기 Class]
+            Field
+            - 음료 이름 (string[] name)
+            - 음료 가격 (int[] price)
+            - 재고 (int[] price)
+            
+            Method
+            - Constructor
+            - 음료 이름 받아 가격 반환 함수
+            - 재고 확인 함수
+         */ 
+        /*struct User
         {
-            Rock,
-            Paper,
-            Scissors,
-            fail = 100
+            public string name;
+            public int userId;
+            public int money;
+
+            public static void Pay()
+            {
+
+            }
         }
 
-        // 승부 결과 (승리 / 패배 / 비김)
-        enum Result
+        struct Machine
         {
-            Win,
-            Lose,
-            Same
-        }
+            public string[] name;
+            public int[] price;
+            
+            public void PutProduct(int idx)
+            {
 
-        int userScore = 0;
-        int comScore = 0;
+            }
+
+            public int ReturnPrice(string name)
+            {
+                int i = 0;
+                foreach(string s in this.name)
+                {
+                    if(s == name)
+                    {
+
+                    }
+                }
+                return 0;
+            }
+        }
+        */
 
 
         public Form1()
         {
             InitializeComponent();
-
+            executeProgram();
         }
 
-        // (가위, 바위, 보) 버튼 클릭 시 실행 로직
-        private void RPS_Click(object sender, EventArgs e)
+        void executeProgram()
         {
-            textBox_result.Text = ""; //get rid of pre-records.
-            RPS mine = CheckRPS(((Button)sender).Name); //What button did the user click?
-            PlayRPSGrame(mine); //Get the result of 'Rock-Paper-Scissors'
-        }
+            string[] input1;
+            string[] input2;
 
-        // 게임 전체 로직
-        void PlayRPSGrame(RPS mine)
-        {
-            Result result = RPSGame(mine);
-            if (result == Result.Win)
+            //get x, y value from user
+            Console.WriteLine("첫 번째 x, y 좌표를 입력하세요 (예시: 3 5)");
+            input1 = Console.ReadLine().Split(' ');
+            while (input1.Length < 2)
             {
-                userScore++;
-                textBox_myScore.Text = userScore.ToString();
-            }
-            else if (result == Result.Lose)
-            {
-                comScore++;
-                textBox_comScore.Text = comScore.ToString();
+                Console.WriteLine("다시 입력해주세요");
+                input1 = Console.ReadLine().Split(' ');
             }
 
-            if (userScore == 3 || comScore == 3)
+            Console.WriteLine("두 번째 x, y 좌표를 입력하세요");
+            input2 = Console.ReadLine().Split(' ');
+            while (input2.Length < 2)
             {
-                textBox_result.Text += "게임 끝!";
-                SetToZero();
+                Console.WriteLine("다시 입력해주세요");
+                input2 = Console.ReadLine().Split(' ');
             }
-        }
 
-        // 승부 판단 로직
-        Result RPSGame(RPS mine)
-        {
-            Random r = new Random();
-            RPS computer = (RPS)r.Next(0, 3);
-            
-            textBox_result.Text += $"마왕의 선택: {computer}\r\n";
-            if (mine == computer)
-            {
-                textBox_result.Text += "비겼습니다!\r\n";
-                return Result.Same;
-            }
-            else if ((mine == RPS.Rock && computer == RPS.Scissors) || (mine == RPS.Paper && computer == RPS.Rock) || (mine == RPS.Scissors && computer == RPS.Paper))
-            {
+            Point p1 = new Point();
+            Point p2 = new Point(); 
+            p1.x = int.Parse(input1[0]);
+            p1.y = int.Parse(input1[1]);
+            p2.x = int.Parse(input2[0]);
+            p2.y = int.Parse(input2[1]);
 
-                textBox_result.Text += "이겼어요 야호~~!\r\n";
-                return Result.Win;
-            }
-            else
-            {
-                textBox_result.Text += "마왕의 득점! 내가 봐줬다~~\r\n";
-                return Result.Lose;
-            }
-        }
-
-        // 점수 초기화 로직
-        void SetToZero()
-        {
-            textBox_myScore.Text = "0";
-            textBox_comScore.Text = "0";
-        }
-
-        
-        // User가 선택한 옵션값을 ENUM 값으로 반환
-        RPS CheckRPS(string mine)
-        {
-            switch (mine)
-            {
-                case "buttonScissors":
-                    return RPS.Scissors;
-                case "buttonRock":
-                    return RPS.Rock;
-                case "buttonPaper":
-                    return RPS.Paper;
-                default:
-                    return RPS.fail;
-            }
+            Console.WriteLine(Point.Diff_xy(p1, p2).ToString("0.00"));
         }
     }
 }
