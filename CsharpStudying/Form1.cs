@@ -14,23 +14,7 @@ using System.Windows.Forms;
 
 namespace CsharpStudying
 {
-    struct Student
-    {
-        private string name;
-        private int age;
-        private double score;
-
-        public Student(string name, int age, double score)
-        {
-            this.name = name;
-            this.age = age;
-            this.score = score;
-        }
-        public static void printStudent(Student s)
-        {
-            Console.WriteLine($"학생 {s.name}({s.age})의 성적 : {s.score}");
-        }
-    }
+    
     public partial class Form1 : Form
     {
         public Form1()
@@ -41,32 +25,7 @@ namespace CsharpStudying
 
         void executeProgram()
         {
-            string[] splited;
-            Student[] s = new Student[3];
-
-            Console.WriteLine("=========Student Record=========\r\n학생의 정보(이름, 나이, 점수)를 입력하세요 (예: 홍길동, 23, 97)");
-            int cnt = 0;
-            while (cnt < 3)
-            {
-                Console.Write($"학생{cnt+1}의 정보 : ");
-                splited = Console.ReadLine().Split(',');
-                if (splited.Length == 3)
-                {
-                    try
-                    {
-                        s[cnt] = new Student(splited[0], int.Parse(splited[1]), Convert.ToDouble(splited[2]));
-                        cnt++;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("=== ERROR ===");
-                    }
-                }
-            }
-            for (int i = 0; i < cnt; i++)
-            {
-                Student.printStudent(s[i]);
-            }
+            
         }
     }
 }

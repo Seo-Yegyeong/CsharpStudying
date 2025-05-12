@@ -17,6 +17,37 @@ using System.Windows.Forms;
 
 namespace CsharpStudying // 프로젝트 이름.
 {
+    struct Point
+    {
+        public int x;
+        internal int y; // internal (접근제한자) - 같은 프로젝트 안에서만 접근 가능.
+        public int z;
+
+        public static double Diff_xy(Point a, Point b)
+        {
+            return Math.Sqrt(Math.Pow(a.x - b.x, 2) + Math.Pow(a.y - b.y, 2));
+        }
+    }
+
+    struct Student
+    {
+        private string name;
+        private int age;
+        private double score;
+
+        public Student(string name, int age, double score)
+        {
+            this.name = name;
+            this.age = age;
+            this.score = score;
+        }
+        public static void printStudent(Student s)
+        {
+            Console.WriteLine($"학생 {s.name}({s.age})의 성적 : {s.score}");
+        }
+    }
+
+
     public partial class Storage : Form
     // Form1 이라는 이름의 클래스. Form 클래스를 상속받음.
     // .NET에서 제공하는 기본 윈도우 창인 Form 클래스를 상속 받아서, 윈도우 창의 기본 동작과 속성을 물려받음.
@@ -56,6 +87,7 @@ namespace CsharpStudying // 프로젝트 이름.
         public Storage() // Form1 클래스의 생성자 (constructor)
         {
             InitializeComponent(); // Form에 포함된 UI 요소들을 초기화하는 메서드 호출. 버튼, 텍스트박스 등 디자인 도구에서 만든 컨트롤들을 실제로 생성하고 속성 설정하는 코드들이 있음. Form 실행될 때 꼭 호출되어야 윈도우 폼이 제대로 보인다!
+            //executeProgram();
 
             // #region이란? 특정 코드 블록을 접어서 숨겨주는 기능!
             #region #1 if문 강의
@@ -650,6 +682,70 @@ namespace CsharpStudying // 프로젝트 이름.
         }
         #endregion
 
+        #region #Struct Practice#1
+        /*void executeProgram()
+        {
+            string[] input1;
+            string[] input2;
 
+            //get x, y value from user
+            Console.WriteLine("첫 번째 x, y 좌표를 입력하세요 (예시: 3 5)");
+            input1 = Console.ReadLine().Split(' ');
+            while (input1.Length < 2)
+            {
+                Console.WriteLine("다시 입력해주세요");
+                input1 = Console.ReadLine().Split(' ');
+            }
+
+            Console.WriteLine("두 번째 x, y 좌표를 입력하세요");
+            input2 = Console.ReadLine().Split(' ');
+            while (input2.Length < 2)
+            {
+                Console.WriteLine("다시 입력해주세요");
+                input2 = Console.ReadLine().Split(' ');
+            }
+
+            Point p1 = new Point();
+            Point p2 = new Point();
+            p1.x = int.Parse(input1[0]);
+            p1.y = int.Parse(input1[1]);
+            p2.x = int.Parse(input2[0]);
+            p2.y = int.Parse(input2[1]);
+
+            Console.WriteLine(Point.Diff_xy(p1, p2).ToString("0.00"));
+        }*/
+        #endregion
+
+        #region #Struct Practice#2
+        /*void executeProgram()
+        {
+            string[] splited;
+            Student[] s = new Student[3];
+
+            Console.WriteLine("=========Student Record=========\r\n학생의 정보(이름, 나이, 점수)를 입력하세요 (예: 홍길동, 23, 97)");
+            int cnt = 0;
+            while (cnt < 3)
+            {
+                Console.Write($"학생{cnt + 1}의 정보 : ");
+                splited = Console.ReadLine().Split(',');
+                if (splited.Length == 3)
+                {
+                    try
+                    {
+                        s[cnt] = new Student(splited[0], int.Parse(splited[1]), Convert.ToDouble(splited[2]));
+                        cnt++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("=== ERROR ===");
+                    }
+                }
+            }
+            for (int i = 0; i < cnt; i++)
+            {
+                Student.printStudent(s[i]);
+            }
+        }*/
+        #endregion
     }
 }
