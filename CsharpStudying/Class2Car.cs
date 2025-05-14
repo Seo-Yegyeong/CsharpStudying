@@ -30,7 +30,7 @@ namespace CsharpStudying
 {
     // 1. 클래스 선언
     // - 객체를 만들기 위한 설계도(틀)
-    internal class Car
+    internal class Class2Car
     {
         #region 2. 필드
         /*
@@ -137,7 +137,7 @@ namespace CsharpStudying
          */
 
         // --- #4-1. 기본 생성자 (없으면 자동 제공)
-        public Car()
+        public Class2Car()
         {
             ModelName = "이름 없는 차";
             Speed = 0;
@@ -150,7 +150,7 @@ namespace CsharpStudying
         }
 
         // --- #4-2. 매개변수 있는 생성자
-        public Car(string model, int speed, string color, int year)
+        public Class2Car(string model, int speed, string color, int year)
         {
             ModelName = model;
             Speed = speed;
@@ -181,7 +181,7 @@ namespace CsharpStudying
          *      종료 시 실행할 코드
          * }
          */
-        ~Car()
+        ~Class2Car()
         {
             Console.WriteLine($"{ModelName} 객체가 메모리에서 삭제됩니다.");
         }

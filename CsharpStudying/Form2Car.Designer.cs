@@ -1,6 +1,6 @@
 ﻿namespace CsharpStudying
 {
-    partial class FormCar
+    partial class Form2Car
     {
         /// <summary>
         /// Required designer variable.
