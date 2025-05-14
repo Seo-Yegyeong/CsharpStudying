@@ -59,20 +59,26 @@ namespace CsharpStudying
             #endregion
 
             // 실습1. ref 키워드를 활용한 배열 채우기
-            Console.Write("How long array length do you want? ");
+            Console.Write("How long array do you want? ");
             try
             {
                 int[] arrRef = new int[int.Parse(Console.ReadLine())];
-                SetArray(ref arrRef);
-                foreach (int i in arrRef) Console.WriteLine(i);
+                SetArrayRef(ref arrRef);
+                Console.Write("[ref] 배열 값: ");
+                foreach (int i in arrRef) Console.Write(i + " ");
+                Console.Write("\r\n--------------------------------\r\n");
             }
             catch {
                 MessageBox.Show("Error! Put the number");
             }
 
             // 실습2. out 키워드를 활용한 배열 생성 및 채우기
-            //int[] arrOut;
-
+            int[] arrOut;
+            Console.Write("How long array do you want? ");
+            if(int.TryParse(Console.ReadLine(), out int len)) SetArrayOut(out arrOut, len);
+            else { return; }
+            Console.Write("[out] 배열 값: ");
+            foreach (int i in arrOut) Console.Write(i + " ");
         }
 
         // Functions
@@ -82,13 +88,18 @@ namespace CsharpStudying
 
 
         // 실습1. ref 키워드 활용 함수
-        void SetArray(ref int[] arr)
+        void SetArrayRef(ref int[] arr)
         {
             int len = arr.Length;
-            for (int i = 0; i < len; i++)
-            {
-                arr[i] = i + 1;
-            }
+            for (int i = 0; i < len; i++) arr[i] = i + 1;
         }
+
+        // 실습2. out 키워드 활용 함수
+        void SetArrayOut(out int[] arr, int len)
+        {
+            arr = new int[len];
+            for (int i = 0; i < len; i++) arr[i] = i + 1;
+        }
+
     }
 }
